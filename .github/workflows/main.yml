@@ -1,31 +1,25 @@
-name: master
+# This is a basic workflow to showcase the use of Reusable Workflows
+
+name: main
 
 on:
-
-  push:
-
-    branches: [ "main" ]
-
-  pull_request:
-
-    branches: [ "main" ]
-
   workflow_dispatch:
 
 jobs:
-
-  build:
-
+  do-it:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v2
 
-      - uses: actions/checkout@v3
+      - name: Run a one-line script
+        run: echo Hello, world!
 
-      - name: Scripts
-
-        run: |
-          docker build -t trivynew .
-          echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
-          docker tag trivynew ashwiniranganath2020/trivynew
-          docker push ashwiniranganath2020/trivynew
+  docker:
+    uses: AshwiniRanganath2020/ReusableWorkflow/.github/workflows/build.yml@main
+    with:
+      image_name: ashwiniranganath2020/trivyscan
+      tag: ashwiniranganath2020/trivyscan
+    secrets:
+        username: ${{secrets.DOCKER_USERNAME}}
+        password: ${{secrets.DOCKER_PASSWORD}}
