@@ -16,7 +16,7 @@ jobs:
         run: echo Hello, world!
 
   docker:
-    uses: AshwiniRanganath2020/ReusableWorkflow/.github/workflows/build.yml@main
+    uses: AshwiniRanganath2020/Trivyscan/.github/workflows/build.yml@main
     with:
       image_name: ashwiniranganath2020/trivyscan
       tag: ashwiniranganath2020/trivyscan
