@@ -48,7 +48,7 @@ jobs:
           git clone https://${{ secrets.GH_TOKEN }}@github.com/AshwiniRanganath2020/Trivyscan.git
       - name: copy the docker file to template directory
         run: |
-          cp ${{ inputs.docker_file_path }}/Dockerfile ./Trivyscan/configs   
+          cp ${{ inputs.docker_file_path }}./Trivyscan/Dockerfile ./Trivyscan/configs   
       - name: Install Trivy CLI
         run: |
           curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b /usr/local/bin v0.31.3
