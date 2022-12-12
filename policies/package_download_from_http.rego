@@ -31,3 +31,4 @@ deny[res] {
         cmd := fail_http_check[_]
         msg := "download from http:// not allowed: "
         res := result(msg, cmd)
+}
