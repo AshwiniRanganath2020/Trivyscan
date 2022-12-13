@@ -1,6 +1,6 @@
 name: build
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       image_name:
         required: true
