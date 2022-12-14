@@ -10,9 +10,9 @@ on:
         required: true
         type: string
    # GitHub Repo Name		
-      GHCR_REPO:
-        required: true
-        type: string
+  #    GHCR_REPO:
+  #      required: true
+  #      type: string
    # Path to the Dockerfile. (default {context}/Dockerfile)
       docker_file_path:
         required: true
