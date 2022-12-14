@@ -65,11 +65,11 @@ jobs:
           /usr/local/bin/trivy image --download-db-only
     - name: Run Trivy  scan for Docker Image and generate html report
       run: |
-         docker run  -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:0.28.0 image ashwiniranganath2020/trivyscan
+         /usr/local/bin/trivy image  --format template --template "@./Trivyscan/html.tpl" --ignorefile "./Trivyscan/.trivyignore" -o Report.html ${{ inputs.GHCR_REPO }}${{ inputs.image_name }}
               
     - name: Run Trivy scan for filesystem and generate html report(Trivy will look for vulnerabilities based on lock files such as Gemfile.lock and package-lock.json)
       run: |
-          /usr/local/bin/trivy -q fs . --format template --template "/Trivyscan/html.tpl" --ignorefile "/Trivyscan/.trivyignore" -o Report2.html ${{ inputs.Package_lock }}
+          /usr/local/bin/trivy -q fs . --format template --template "@./Trivyscan/html.tpl" --ignorefile "/Trivyscan/.trivyignore" -o Report2.html ${{ inputs.Package_lock }}
     
     - name: Run Trivy scan for dockerfile 
       run: |
@@ -84,7 +84,7 @@ jobs:
           path: "Report.html"
     - name: check for Crtical & High vulnerabilities in Docker Image
       run: |
-          docker run  -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:0.28.0 image umangcypherbh/trivyscan
+           /usr/local/bin/trivy image --no-progress --exit-code 1 --severity CRITICAL,HIGH --ignore-unfixed --ignorefile "./Trivyscan/.trivyignore" ${{ inputs.GHCR_REPO }}${{ inputs.image_name }}
           
     - name: Check for filesystem (Trivy will look for vulnerabilities based on lock files such as Gemfile.lock and package-lock.json)
       run: |
@@ -111,4 +111,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/trivyscan:1.0
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/trivyscan:2.0
