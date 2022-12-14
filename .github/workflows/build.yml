@@ -49,7 +49,7 @@ jobs:
            docker build -t ashwiniranganath2020/trivyscan:latest -t ashwiniranganath2020/trivyscan:1.0 .
     - name: copy template file from  Trivyscan repo
       run: |
-          git clone https://${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}@github.com/uashwiniranganath2020/Trivyscan.git
+          git clone https://${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}@github.com/ashwiniranganath2020/Trivyscan.git
     - name: copy the docker file to template directory
       run: |
          cp ${{ inputs.docker_file_path }}./Trivyscan/Dockerfile ./Trivyscan/config    
