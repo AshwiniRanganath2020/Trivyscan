@@ -4,29 +4,7 @@ on:
   push:
     branches:
       - "master"
-  workflow_call:
-    inputs:
-      image_name:
-        required: true
-        type: string
-      image_tag: 
-        required: true
-        type: string
-        default: "0"
-   # GitHub Repo Name		
-  #    GHCR_REPO: https://hub.docker.com/
-  #      required: true
-  #      type: string
-   # Path to the Dockerfile. (default {context}/Dockerfile)
-            
-     # Packages_lock:
-      #  type: string
-      #  required: true
-       # description: "location of lock file Trivy will look for vulnerabilities based on lock files such as Gemfile.lock and package-lock.json"    
-     # username:
-      #  type: string
-       # required: true
-        # description: "github username"
+  
 
 jobs:
   build:
